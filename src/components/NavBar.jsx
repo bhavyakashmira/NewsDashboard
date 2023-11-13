@@ -22,11 +22,12 @@ function NavBar(props) {
 
   return (
     <>
-    <Navbar expand="lg" style={{backgroundColor:'grey',width:'100%', position:'fixed',zIndex:'100'}} >
+    <Navbar expand="lg" style={{backgroundColor:'grey', position:'fixed', marginTop:'0px', top:'0',width:'100%',zIndex:'100'}} >
       <Container fluid>
         <Navbar.Brand href="#" >NewsDashboard</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+          <Navbar.Collapse id="navbarScroll">
+            
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px', }}
@@ -50,7 +51,7 @@ function NavBar(props) {
               aria-label="Search"
               onChange={handleSearchChange}
               value={searchQuery}  
-            />
+              />
             <Button variant="danger" onClick={()=>setSearchQuery(searchQuery)} >Search</Button>
           </Form>
         </Navbar.Collapse>

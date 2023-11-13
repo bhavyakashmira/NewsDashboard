@@ -6,17 +6,37 @@ export function Contexts({ children }) {
     const [filteredData, setFilteredData] = useState([]);
     const [data, setData] = useState([]);
 
+    // useEffect(() => {
+    //     fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_SECRET_KEY}`)
+    //         .then((response) => response.json())
+    //         .then((data) => { setData(data); setFilteredData(data.articles); })
+    // }, [])
+
+   
+
     useEffect(() => {
-        fetch("https://linesnews.onrender.com/api/news-datas")
-            .then((response) => response.json())
-            .then((data) => { setData(data.data); setFilteredData(data.data); })
-    }, [])
+        fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_SECRET_KEY}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(newsData => {
+                setData(newsData['articles'])
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    },[])
+
 
     const [sharedData, setSharedData] = useState(' ');
     const [searchQuery, setSearchQuery] = useState('');
 
     const updateSharedData = (newData) => {
-        setSharedData(newData);
+        setSharedData(typeof newData);
     };
     
 
