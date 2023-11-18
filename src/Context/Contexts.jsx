@@ -6,14 +6,9 @@ export function Contexts({ children }) {
     const [filteredData, setFilteredData] = useState([]);
     const [data, setData] = useState([]);
 
-    // useEffect(() => {
-    //     fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_SECRET_KEY}`)
-    //         .then((response) => response.json())
-    //         .then((data) => { setData(data); setFilteredData(data.articles); })
-    // }, [])
 
    
-
+    
     useEffect(() => {
         fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_SECRET_KEY}`)
             .then(response => {
