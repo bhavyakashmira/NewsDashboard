@@ -5,12 +5,12 @@ const ApiContext = createContext();
 export function Contexts({ children }) {
     const [filteredData, setFilteredData] = useState([]);
     const [data, setData] = useState([]);
+    const [coun, setcoun] = useState("in");
+    const [cat, setcat] = useState("entertainment");
 
-
-   
     
     useEffect(() => {
-        fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_SECRET_KEY}`)
+        fetch(`https://newsapi.org/v2/top-headlines?category=${cat}&country=${coun}&apiKey=${process.env.REACT_APP_SECRET_KEY}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -24,7 +24,7 @@ export function Contexts({ children }) {
                 console.error('Error:', error);
             });
 
-    },[])
+    },[coun , cat])
 
 
     const [sharedData, setSharedData] = useState(' ');
@@ -36,7 +36,7 @@ export function Contexts({ children }) {
     
 
     return (
-        <ApiContext.Provider value={{ data, sharedData, updateSharedData, searchQuery, setSearchQuery }}>
+        <ApiContext.Provider value={{ data, sharedData,setcat, setcoun, updateSharedData, searchQuery, setSearchQuery }}>
         {children}
         </ApiContext.Provider>
     );

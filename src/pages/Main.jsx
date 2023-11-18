@@ -15,7 +15,7 @@ function Main() {
           <div>
             <Vertical />
           </div>
-          <div style={{marginLeft:'105px'}}>
+          <div style={{marginLeft:'200px'}}>
           <Home />
          
         </div>

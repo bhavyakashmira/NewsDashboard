@@ -7,12 +7,23 @@ import { useApi } from '../Context/Contexts';
 function Home() {
 
   const { data, sharedData, searchQuery } = useApi();
+  
+
+  const data1 = searchQuery
+    ? data.filter(article =>
+      article.description &&
+      (article.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      article.title.toLowerCase().includes(searchQuery.toLowerCase()) 
+      )
+    : data;
+ 
+
     return (
       <div>
-    
+
         <CardGroup>
         {
-          data.map( (article , index) => (
+          data1.map( (article , index) => (
             <div key={index}>
               <NewsCards {...article}/>
             </div>
@@ -25,3 +36,6 @@ function Home() {
 };
 
 export default Home;
+
+
+
